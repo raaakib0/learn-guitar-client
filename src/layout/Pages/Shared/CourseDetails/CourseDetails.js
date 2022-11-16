@@ -1,14 +1,16 @@
 import React from 'react';
+import { CardImg } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 const CourseDetails = ({ course }) => {
    const { _id, title, author, details, image_url, total_view } = course;
     return (
-        <Card className="text-center">
+        <Card className="text-center mb-4">
             <Card.Header>Featured</Card.Header>
             <Card.Body>
-                <Card.Title>Special title treatment</Card.Title>
+                <Card.Title>{title}</Card.Title>
+                <CardImg variant='top' src={image_url}/>
                 <Card.Text>
                     {
                         details.length > 200 ?

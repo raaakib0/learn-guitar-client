@@ -5,6 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import Form from 'react-bootstrap/Form';
 
 const Header = () => {
     return (
@@ -31,12 +33,19 @@ const Header = () => {
                     <Nav>
                         <Nav.Link href="#deets">More deets</Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                            
+                            <Form.Check
+                                label="Dark Mode"
+                                type="switch"
+                                id="custom-switch"
+                            />
                         </Nav.Link>
+                        
                     </Nav>
                     <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>
                     </div>
+                    
                 </Navbar.Collapse>
             </Container>
         </Navbar>
