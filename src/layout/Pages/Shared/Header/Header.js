@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
-import ToggleButton from 'react-bootstrap/ToggleButton'
 import Form from 'react-bootstrap/Form';
+import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
     return (
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="dark" variant="dark">
             <Container>
@@ -31,7 +32,7 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
+                        <Nav.Link href="#deets">{user?.displayName }</Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
                             
                             <Form.Check
