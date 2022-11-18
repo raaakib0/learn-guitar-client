@@ -19,7 +19,9 @@ const Main = () => {
                     <Col lg="8">
                         
                         <CarouselCourse></CarouselCourse>
-                        <Outlet>  </Outlet>
+                      
+                            <Outlet ></Outlet>
+      
                     </Col>
                     <Col lg="2">
                         <RightSideNav></RightSideNav>
