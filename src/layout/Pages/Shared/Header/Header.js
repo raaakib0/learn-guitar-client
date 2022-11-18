@@ -7,15 +7,30 @@ import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
+import { Image } from 'react-bootstrap';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
+    // console.log(user);
     return (
+
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="dark" variant="dark">
+            
             <Container>
-                <Navbar.Brand> <Link to='/' >Learn Guitar</Link> </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Brand> <Link to='/' >Learn Guitar</Link> </Navbar.Brand>
+                
+                
+                <div className='d-lg-none'>
+                    {
+                        user ?
+                            <Image style={{ height: '30px' }} roundedCircle src={user.photoURL}></Image>
+                            : <FaUser></FaUser>
+                    }
+                </div>
                 <Navbar.Collapse id="responsive-navbar-nav">
+                    
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
@@ -32,21 +47,30 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">{user?.displayName }</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            
+                        
+                        <Nav.Link href="">
                             <Form.Check
                                 label="Dark Mode"
                                 type="switch"
                                 id="custom-switch"
                             />
                         </Nav.Link>
-                        
+                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                        <Nav.Link eventKey={2} href="#memes">
+                            {
+                                user?
+                                <Image style={{ height: '30px' }} roundedCircle src={user.photoURL}></Image>
+                                : <FaUser></FaUser>
+                            }
+
+                            
+                        </Nav.Link>
+
                     </Nav>
                     <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>
                     </div>
-                    
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
