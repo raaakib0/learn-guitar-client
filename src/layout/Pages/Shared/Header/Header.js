@@ -7,21 +7,27 @@ import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     // console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
 
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="dark" variant="dark">
-            
+
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Brand> <Link to='/' >Learn Guitar</Link> </Navbar.Brand>
-                
-                
+
+
                 <div className='d-lg-none'>
                     {
                         user ?
@@ -30,7 +36,7 @@ const Header = () => {
                     }
                 </div>
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    
+
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
@@ -47,7 +53,7 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        
+
                         <Nav.Link href="">
                             <Form.Check
                                 label="Dark Mode"
@@ -55,15 +61,27 @@ const Header = () => {
                                 id="custom-switch"
                             />
                         </Nav.Link>
-                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                        <Nav.Link href="#deets">{
+                            user?.uid ?
+                                <>
+                                    <span>{user?.displayName}</span>
+                                    <Button className="ms-2" variant='outline-light' onClick={handleLogOut} >Logout</Button>
+                                </>
+                                :
+                                <>
+                                    <Link to='/login'>Login</Link>
+                                    <Link to='/register'>Register</Link>
+                                </>
+                        }</Nav.Link>
+
                         <Nav.Link eventKey={2} href="#memes">
                             {
-                                user?
-                                <Image style={{ height: '30px' }} roundedCircle src={user.photoURL}></Image>
-                                : <FaUser></FaUser>
+                                user?.photoURL ?
+                                    <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
+                                    : <FaUser></FaUser>
                             }
 
-                            
+
                         </Nav.Link>
 
                     </Nav>
