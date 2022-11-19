@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext , useState} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
@@ -7,6 +7,7 @@ const handleSubmit = event => {
 }
 
 const Register = () => {
+    const [error, setError] = useState('');
     const { createUser } = useContext(AuthContext);
     const handleSubmit = event => {
         event.preventDefault();
@@ -22,8 +23,12 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
             })
-        .catch(e => console.error(e))
+            .catch(e => {
+                console.error(e)
+                setError(e.message);
+            })
     }
     return (
         <Form onSubmit={handleSubmit} >
@@ -53,6 +58,9 @@ const Register = () => {
             <Button variant="primary" type="submit">
                 Register
             </Button>
+            <Form.Text className='text-danger'>
+                {error}
+            </Form.Text>
         </Form>
     );
 };
