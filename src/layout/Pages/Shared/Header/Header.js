@@ -8,7 +8,10 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
 import { Button, Image } from 'react-bootstrap';
-import { FaUser } from 'react-icons/fa';
+import { FaGuitar, FaUser } from 'react-icons/fa';
+
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -19,13 +22,18 @@ const Header = () => {
             .then(() => { })
             .catch(error => console.error(error))
     }
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            {user?.displayName}
+        </Tooltip>
+    );
     return (
 
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="dark" variant="dark">
 
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Brand> <Link to='/' >Learn Guitar</Link> </Navbar.Brand>
+                <Navbar.Brand> <Link to='/' >  <FaGuitar></FaGuitar> Learn Guitar</Link> </Navbar.Brand>
 
 
                 <div className='d-lg-none'>
@@ -77,8 +85,14 @@ const Header = () => {
                         <Nav.Link eventKey={2} href="#memes">
                             {
                                 user?.photoURL ?
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
                                     <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
-                                    : <FaUser></FaUser>
+                                    </OverlayTrigger>
+                                        : <FaUser></FaUser>
                             }
 
 

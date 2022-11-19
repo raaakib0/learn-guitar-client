@@ -1,16 +1,18 @@
-import React, { useContext , useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
-const handleSubmit = event => {
-    event.preventDefault();
-}
+// const handleSubmit = event => {
+//     event.preventDefault();
+// }
 
 const Register = () => {
     const [error, setError] = useState('');
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    
     const handleSubmit = event => {
         event.preventDefault();
+
         const form = event.target;
         const name = form.name.value;
         const photoURL = form.photoURL.value;
@@ -22,14 +24,26 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                form.reset();
                 setError('');
+                form.reset();
+                handleUpdateUserProfile(name, photoURL)
             })
             .catch(e => {
                 console.error(e)
                 setError(e.message);
-            })
+            });
     }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
     return (
         <Form onSubmit={handleSubmit} >
             <Form.Group className="mb-3" controlId="formBasicEmail">
