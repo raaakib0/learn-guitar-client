@@ -69,8 +69,8 @@ const Header = () => {
                                 </>
                                 :
                                 <>
-                                    <Link to='/login'>Login</Link>
-                                    <Link to='/register'>Register</Link>
+                                    <Button className="ms-2" variant='outline-light'> <Link to='/login'>Login</Link></Button>
+                                    <Button className="ms-2" variant='outline-light'>  <Link to='/register'>Register</Link></Button>
                                 </>
                         }</Nav.Link>
 
