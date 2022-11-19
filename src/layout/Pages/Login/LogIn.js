@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const LogIn = () => {
     const [error, setError] = useState('');
     const { logIn } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
