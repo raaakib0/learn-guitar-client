@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const LogIn = () => {
@@ -54,6 +54,8 @@ const LogIn = () => {
             <Form.Text className='text-danger'>
                 {error}
             </Form.Text>
+            <Button className="ms-2" variant='outline-primary'>  <Link to='/register'>Register</Link></Button>
+
         </Form>
     );
 };
