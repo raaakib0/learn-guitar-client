@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import RightSideNav from '../../Shared/RightSideNav/RightSideNav';
 
 const Course = () => {
     const course = useLoaderData();
@@ -17,6 +18,7 @@ const Course = () => {
                 <Link to={`/category/${category_id}`} >
                     <Button variant="primary">All Tutorial in This Course</Button>
                 </Link>
+                <Button variant="primary">Add To Cart</Button>
             </Card.Body>
         </Card>
     );

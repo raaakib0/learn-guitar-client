@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { FaGoogle,FaFacebook } from 'react-icons/fa';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import CarouselCourse from '../Carousel/CarouselCourse';
-import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
 import { FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import CarouselCourse from '../Shared/Carousel/CarouselCourse';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const GoogleFacebookLogin = () => {
-
+    
     const { providerLogin } = useContext(AuthContext);
     
     const googleProvider = new GoogleAuthProvider()

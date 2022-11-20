@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import GoogleFacebookLogin from './GoogleFacebookLogin';
 
 const LogIn = () => {
     const [error, setError] = useState('');
@@ -31,7 +32,7 @@ const LogIn = () => {
     }
 
     return (
-        
+
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -55,7 +56,7 @@ const LogIn = () => {
                 {error}
             </Form.Text>
             <Button className="ms-2" variant='outline-primary'>  <Link to='/register'>Register</Link></Button>
-
+            <GoogleFacebookLogin></GoogleFacebookLogin>
         </Form>
     );
 };

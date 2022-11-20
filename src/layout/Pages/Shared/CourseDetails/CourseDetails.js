@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 const CourseDetails = ({ course }) => {
-    const { _id, title, author, details, image_url, total_view } = course;
+    const { _id, title, details, image_url } = course;
     return (
 
         <div >
@@ -15,8 +15,8 @@ const CourseDetails = ({ course }) => {
                     <CardImg variant='top' src={image_url} />
                     <Card.Text>
                         {
-                            details.length > 200 ?
-                                <p>{details.slice(0, 250) + "..."} <Link to={`/course/${_id}`} >more</Link> </p>
+                            details.length > 100 ?
+                                <p>{details.slice(0, 150) + "..."} <Link to={`/course/${_id}`} >more</Link> </p>
                                 : <p> {details} </p>
                         }
                     </Card.Text>

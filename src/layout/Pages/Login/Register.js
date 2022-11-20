@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import GoogleFacebookLogin from './GoogleFacebookLogin';
 
 // const handleSubmit = event => {
 //     event.preventDefault();
@@ -77,6 +78,7 @@ const Register = () => {
                 {error}
             </Form.Text>
             <Button className="ms-2" variant='outline-primary'>  <Link to='/login'>Log In</Link></Button>
+            <GoogleFacebookLogin></GoogleFacebookLogin>
         </Form>
     );
 };
